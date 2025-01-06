@@ -40,6 +40,7 @@ namespace dfbhdx
     void initialize()
     {
         setup_logging();
+        SPDLOG_INFO("Initializing...");
         component_loader::add_component<dfbhdx::components::dispatcher>();
         component_loader::add_component<dfbhdx::components::archive>();
         //component_loader::add_component<dfbhdx::components::scripting>();
@@ -53,6 +54,7 @@ namespace dfbhdx
 
     void uninitialize()
     {
+        SPDLOG_INFO("Uninitializing...");
         component_loader::unload_components();
     }
 }

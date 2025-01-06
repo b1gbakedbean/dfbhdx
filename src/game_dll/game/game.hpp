@@ -53,14 +53,14 @@ namespace game
 		extern void* game_res;
 		extern void* font;
 		extern uint32_t* is_host;
-		extern ServerStruct** server;
+		extern game::ServerStruct** server;
 		extern int* model_count;
-		extern Entity** organics;
-		extern Entity** vehicles;
-		extern Entity** buildings;
-		extern Entity** markers;
+		extern game::Entity** organics;
+		extern game::Entity** vehicles;
+		extern game::Entity** buildings;
+		extern game::Entity** markers;
 		extern void* world_matrix;
-		extern Entity** local_player;
+		extern game::Entity** local_player;
 	}
 
 	// Everything below here is our custom functions that are bascially wrappers around the internal functions/variables
@@ -75,9 +75,9 @@ namespace game
 
 	int rgb_color(int r, int g, int b);
 
-	void draw_box(BoxBounds bounds, std::string title);
-	void draw_text(int x, int y, std::string text, int color);
-	void draw_text(Entity* entity, std::string text, int color);
+	void draw_box(BoxBounds bounds, const std::string& title);
+	void draw_text(int x, int y, const std::string& text, int color);
+	void draw_text(Entity* entity, const std::string& text, int color);
 	int get_fps();
 	HWND get_hwnd();
 	IDirect3DDevice9* get_d3d_device();

@@ -27,14 +27,14 @@ namespace game
 		void* game_res = reinterpret_cast<void*>(0x009F72C0);
 		void* font = reinterpret_cast<void*>(0x0095B9BC);
 		uint32_t* is_host = reinterpret_cast<uint32_t*>(0x009F2190);
-		ServerStruct** server = reinterpret_cast<ServerStruct**>(0x009ED600);
+		game::ServerStruct** server = reinterpret_cast<game::ServerStruct**>(0x009ED600);
 		int* model_count = reinterpret_cast<int*>(0x00D06060);
-		Entity** organics = reinterpret_cast<Entity**>(0x00715900);
-		Entity** vehicles = reinterpret_cast<Entity**>(0x00715904);
-		Entity** buildings = reinterpret_cast<Entity**>(0x00715908);
-		Entity** markers = reinterpret_cast<Entity**>(0x0071590C);
+		game::Entity** organics = reinterpret_cast<game::Entity**>(0x00715900);
+		game::Entity** vehicles = reinterpret_cast<game::Entity**>(0x00715904);
+		game::Entity** buildings = reinterpret_cast<game::Entity**>(0x00715908);
+		game::Entity** markers = reinterpret_cast<game::Entity**>(0x0071590C);
 		void* world_matrix = reinterpret_cast<void*>(0x007159EC);
-		Entity** local_player = reinterpret_cast<Entity**>(0x0096C290);
+		game::Entity** local_player = reinterpret_cast<game::Entity**>(0x0096C290);
 	}
 
 	// Everything below here is our custom functions that are mostly wrappers around the internal functions/variables
@@ -44,19 +44,19 @@ namespace game
 		return (r << 16) + (g << 8) + b;
 	}
 
-	void draw_box(BoxBounds bounds, std::string title)
+	void draw_box(BoxBounds bounds, const std::string& title)
 	{
 		internal::draw_box(internal::game_res, bounds.x1, bounds.y1, bounds.x2, bounds.y2, title.c_str(), 0xFF);
 	}
 
-	void draw_text(int x, int y, std::string text, int color)
+	void draw_text(int x, int y, const std::string& text, int color)
 	{
 		auto text_width = internal::get_font_width_text(text.c_str(), internal::font);
 
 		internal::draw_text(internal::game_res, x + (text_width / 2), y, 0, text.c_str(), internal::font, color, 2);
 	}
 
-	void draw_text(Entity* entity, std::string text, int color)
+	void draw_text(Entity* entity, const std::string& text, int color)
 	{
 		auto width = internal::get_font_width(48, internal::font);
 		Vector3 screenPos{};

@@ -17,6 +17,9 @@ namespace game
 		transform_world_t transform_world = transform_world_t(0x00560160);
 		convert_world_to_screen_t convert_world_to_screen = convert_world_to_screen_t(0x00502D60);
 		get_distance_t get_distance = get_distance_t(0x0055E6A0);
+		set_loaded_pff_archive_t set_loaded_pff_archive = set_loaded_pff_archive_t(0x00564FC0);
+		load_pff_archive_t load_pff_archive = load_pff_archive_t(0x0056C970);
+		exit_application_t exit_application = exit_application_t(0x00569020);
 
 		// Variables
 		HWND* hwnd = reinterpret_cast<HWND*>(0x00F654FC);
@@ -182,5 +185,29 @@ namespace game
 	Entity* get_local_player()
 	{
 		return *internal::local_player;
+	}
+
+	bool load_pff_archive(unsigned int slot, const std::string& fileName)
+	{
+		auto archive = internal::load_pff_archive(fileName.c_str());
+
+		if (!archive)
+		{
+			return false;
+		}
+
+		internal::set_loaded_pff_archive(slot, archive);
+
+		return true;
+	}
+
+	void show_error_message(const std::string& error_message, bool exit)
+	{
+		MessageBoxA(get_hwnd(), error_message.c_str(), "Program Error", MB_OK);
+
+		if (exit)
+		{
+			internal::exit_application();
+		}
 	}
 }

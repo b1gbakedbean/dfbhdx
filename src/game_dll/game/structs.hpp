@@ -4,6 +4,30 @@ namespace game
 {
 	// Internal game structures belong here
 
+	struct PffEntry
+	{
+		uint32_t deleted;
+		uint32_t offset;
+		uint32_t size;
+		uint32_t modified;
+		char name[15];
+		uint8_t unknown[5];
+	};
+
+	struct PffArchive
+	{
+		int32_t hFile;
+		char pad_0004[136];
+		uint32_t entryCount;
+		uint32_t entrySize;
+		uint32_t entryOffset;
+		PffEntry* entries;
+		PffEntry* cachedEntry;
+		char pad_00A0[8];
+		uint32_t cachedEntrySize;
+		char pad_00AC[16];
+	};
+
 	struct Vector3
 	{
 		int32_t x;

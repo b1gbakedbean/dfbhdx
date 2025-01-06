@@ -37,6 +37,15 @@ namespace game
 		typedef int (*get_distance_t)(int x, int y, int z);
 		extern get_distance_t get_distance;
 
+		typedef void (*set_loaded_pff_archive_t)(unsigned int index, game::PffArchive* archive);
+		extern set_loaded_pff_archive_t set_loaded_pff_archive;
+
+		typedef game::PffArchive* (*load_pff_archive_t)(const char* archiveName);
+		extern load_pff_archive_t load_pff_archive;
+
+		typedef void (*exit_application_t)();
+		extern exit_application_t exit_application;
+
 		// Variables
 		extern IDirect3DDevice9* d3d_device;
 		extern HWND* hwnd;
@@ -80,4 +89,10 @@ namespace game
 	bool world_to_screen(Vector3* screenPosition, Entity* entity);
 	int get_distance_meters(Entity* a, Entity* b);
 	Entity* get_local_player();
+
+	// slot 0 is reserved for a PFF loaded with the /mod command line option
+	// 1 to 3 are usable while 4 is for the team sabre expansion and 5 to 6 are base game
+	bool load_pff_archive(unsigned int slot, const std::string& fileName);
+
+	void show_error_message(const std::string& error_message, bool exit = true);
 }

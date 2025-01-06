@@ -4,6 +4,7 @@
 
 #include "components/component.hpp"
 #include "components/dispatcher.hpp"
+#include "components/archive.hpp"
 //#include "components/scripting.hpp"
 #include "components/network.hpp"
 #include "components/imgui.hpp"
@@ -40,6 +41,7 @@ namespace dfbhdx
     {
         setup_logging();
         component_loader::add_component<dfbhdx::components::dispatcher>();
+        component_loader::add_component<dfbhdx::components::archive>();
         //component_loader::add_component<dfbhdx::components::scripting>();
         component_loader::add_component<dfbhdx::components::network>();
         component_loader::add_component<dfbhdx::components::imgui>();

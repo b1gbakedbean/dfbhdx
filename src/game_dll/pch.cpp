@@ -22,7 +22,7 @@ extern "C" __declspec(dllexport) IDirect3D8* __stdcall Direct3DCreate8(DWORD ver
 
 	if (!LOG.is_open())
 	{
-		LOG.open("d3d8.log", std::ios::trunc);
+		LOG.open("dfbhdx/logs/d3d8.log", std::ios::trunc);
 	}
 
 	if (!LOG.is_open() && LogMessageFlag)

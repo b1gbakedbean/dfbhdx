@@ -19,7 +19,7 @@ namespace dfbhdx
     {
         std::vector<spdlog::sink_ptr> sinks
         {
-            std::make_shared<spdlog::sinks::rotating_file_sink_mt>("logs/dfbhdx.txt", 1048576 * 5, 25, true),
+            std::make_shared<spdlog::sinks::rotating_file_sink_mt>("dfbhdx/logs/dfbhdx.log", 1048576 * 5, 25, true),
 #ifdef _DEBUG
             std::make_shared<spdlog::sinks::msvc_sink_mt>()
 #endif

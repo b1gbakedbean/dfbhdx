@@ -18,8 +18,10 @@ namespace dfbhdx::components
 {
 	void misc::load()
 	{
+		// Change the string used for the window title
 		utils::memory::set_string(0x626DA8, "DF:BHDx");
 
+		// Keeps the mouse from doing weird things in windowed mode
 		utils::memory::nop(0x4623CB, 1);
 		utils::memory::nop(0x4623E0, 6);
 
@@ -34,6 +36,7 @@ namespace dfbhdx::components
 		utils::memory::nop(0x4DC266, 1);
 		utils::memory::nop(0x4DC273, 6);
 
+		// Disable anti-debug if we're running in debug mode
 #ifdef _DEBUG
 		utils::memory::jump(0x42836D, antidebug_stub);
 #endif
